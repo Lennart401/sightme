@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4f2a43a2c48de8f188ca4f4564e11a83",
+    "revision": "064cda40d0dff1de9ef2be11a11998f9",
     "url": "/sightme/index.html"
   },
   {
-    "revision": "7bcec41838c91d11b595",
+    "revision": "e28c5ca64a6a5dad9eb8",
     "url": "/sightme/static/css/main.30fbb969.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sightme/static/js/2.bda1a65b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7bcec41838c91d11b595",
-    "url": "/sightme/static/js/main.c3be4e6c.chunk.js"
+    "revision": "e28c5ca64a6a5dad9eb8",
+    "url": "/sightme/static/js/main.d8e453a9.chunk.js"
   },
   {
     "revision": "ac12a74e95be8a2480c0",
