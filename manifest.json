@@ -33,7 +33,7 @@
             "sizes": "512x512"
         }
     ],
-    "start_url": "/sightme",
+    "start_url": "/sightme/",
     "display": "standalone",
     "theme_color": "#689F38",
     "background_color": "#ffffff"
