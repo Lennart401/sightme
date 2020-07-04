@@ -1,7 +1,8 @@
 import React from "react";
 
-const Placeholder = () => {
-    return <p style={{marginTop: "2em"}}/>;
+const Placeholder = ({factor = 1}) => {
+    const size = 2 * factor;
+    return <p style={{marginTop: size + "em"}}/>;
 };
 
 export default Placeholder;

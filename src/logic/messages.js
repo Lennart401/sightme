@@ -4,13 +4,12 @@ import produce from "immer";
 import { useLayoutEffect, useState } from "react";
 
 const storeKey = "message";
-
-const SET = makeActionName(storeKey, "set");
-const CLEAR = makeActionName(storeKey, "clear");
-
 const DEFAULT_SCOPE = "global";
 
 // DEFINITIONS
+const SET = makeActionName(storeKey, "set");
+const CLEAR = makeActionName(storeKey, "clear");
+
 const reducers = {
     [SET]: (state, {message, scope}) => produce(state, draft => {draft[scope] = message;}),
     [CLEAR]: (state, scope) => produce(state, draft => {draft[scope] = null;})

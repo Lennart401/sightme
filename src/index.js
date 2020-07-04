@@ -6,7 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import {setBasepath} from "hookrouter";
 import moment from "moment";
 import {Provider} from "react-redux";
-import {store} from "./logic/store";
+import { persistor, store } from "./logic/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 setBasepath(process.env.PUBLIC_URL);
 
@@ -14,7 +15,9 @@ moment().locale("de");
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <PersistGate loading={null} persistor={persistor}>
+            <App/>
+        </PersistGate>
     </Provider>,
     document.getElementById('root')
 );

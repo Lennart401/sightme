@@ -16,7 +16,7 @@ const reducers = {
     [GENERATE_LINK]: (state) => produce(state, draft => {
         /** @type {Game} */
         const gameData = {
-            name: state["username"],
+            name: state["name"],
             expiresAt: state["expiresAt"],
             lat: state["latitude"],
             lng: state["longitude"]
@@ -26,7 +26,7 @@ const reducers = {
         draft["link"] = window.origin + "/sightme/join/" + parameter;
     }),
 
-    [SET_USERNAME]: (state, username) => produce(state, draft => {draft["username"] = username}),
+    [SET_USERNAME]: (state, username) => produce(state, draft => {draft["name"] = username}),
     [SET_EXPIRES_AT]: (state, createDate) => produce(state, draft => {draft["expiresAt"] = createDate}),
     [SET_LAT_LNG]: (state, {lat, lng}) => produce(state, draft => {
         draft["latitude"] = lat;
@@ -51,7 +51,7 @@ export const setLatLng = (lat, lng) =>
 //     latitude: 53.3037056,
 //     longitude: 10.544742399999999,
 //     expiresAt: '2020-07-04T22:53:20Z',
-//     username: 'Lennart',
+//     name: 'Lennart',
 //     link: 'http://localhost:3000/sightme/join/eyJuYW1lIjoiTGVubmFydCIsImV4cGlyZXNBdCI6IjIwMjAtMDctMDRUMjI6NTM6MjBaIiwibGF0Ijo1My4zMDM3MDU2LCJsbmciOjEwLjU0NDc0MjM5OTk5OTk5OX0'
 // };
 
