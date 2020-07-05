@@ -5,7 +5,6 @@ import PageTitle from "../components/page-title";
 import { leaveActiveGame, useActiveGame } from "../../logic/active-game";
 import { navigate } from "hookrouter";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Centering from "../components/centering";
 import { executeWithDelay } from "../../logic/with-delay";
@@ -14,6 +13,9 @@ import Typography from "@material-ui/core/Typography";
 import ConfirmDialog from "../components/confirm-dialog";
 import { hideDialog, showDialog, useDialogState } from "../../logic/dialogs";
 import useDistance from "../../logic/use-distance";
+import Tendency from "../components/tendency";
+import Distance from "../components/distance";
+import LargeRipple from "../components/large-ripple";
 
 const useStyles = makeStyles(() => ({
     buttonWrapper: {
@@ -22,18 +24,6 @@ const useStyles = makeStyles(() => ({
         width: "100%",
         marginBottom: "24px"
     },
-    oneToOneContainer: {
-        width: "100%",
-        paddingTop: "100%",
-        position: "relative",
-    },
-    oneToOneItem: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0
-    }
 }));
 
 const CONFIRM_LEAVE_DIALOG = "confirm-leave-dialog";
@@ -45,21 +35,26 @@ const PlayPage = () => {
     const confirm = useDialogState(CONFIRM_LEAVE_DIALOG);
 
     const [useAnimation, setUseAnimation] = useState(true);
-    const [savedFrequency, setSavedFrequency] = useState(0.8);
-
-    const handleLeave = () => {
-        leaveActiveGame();
-        navigate("/");
-    };
+    const [lastFrequency, setLastFrequency] = useState(0.8);
+    const [lastDistance, setLastDistance] = useState(2500);
+    const [tendency, setTendency] = useState(null);
 
     const handleIteration = () => {
-        if (savedFrequency !== frequency) {
-            setSavedFrequency(frequency);
+        if (lastFrequency !== frequency) {
+            setLastFrequency(frequency);
             setUseAnimation(false);
             setTimeout(() => {
                 setUseAnimation(true);
             }, 10);
+
+            setTendency(distance < lastDistance ? 'up' : 'down');
+            setLastDistance(distance);
         }
+    };
+
+    const handleLeave = () => {
+        leaveActiveGame();
+        navigate("/");
     };
 
     useLayoutEffect(() => {
@@ -67,8 +62,6 @@ const PlayPage = () => {
             hideDialog(CONFIRM_LEAVE_DIALOG);
         };
     }, []);
-
-    const displayDistance = distance < 500 ? "< 500 m" : "~ " + (Math.round(distance * 0.002) * 0.5) + " km";
 
     return (
         <Fragment>
@@ -80,26 +73,16 @@ const PlayPage = () => {
                         <Placeholder/>
 
                         <Centering>
-                            <Box className={classes.oneToOneContainer}>
-                                <Box style={{
-                                    position: "absolute",
-                                    top: 0, left: 0, bottom: 0, right: 0,
-                                    animation: useAnimation ? `ripple ${(1 / savedFrequency)}s ease-out infinite` : "none"
-                                }}
-                                     className="ripple"
-                                     onAnimationIteration={handleIteration}/>
-                            </Box>
-
+                            <LargeRipple enable={useAnimation} frequency={lastFrequency} handleIteration={handleIteration}/>
                             <Placeholder/>
-                            <Typography variant="body1">Distanz {displayDistance}</Typography>
+                            <Typography variant="body1">Distanz <Distance distance={lastDistance}/> <Tendency game={game} tendency={tendency}/></Typography>
                         </Centering>
                     </Content>
 
                     <Placeholder factor={3}/>
 
                     <Centering className={classes.buttonWrapper}>
-                        <Button onClick={() => executeWithDelay(() => showDialog(CONFIRM_LEAVE_DIALOG))}>Spiel
-                            verlassen</Button>
+                        <Button onClick={() => executeWithDelay(() => showDialog(CONFIRM_LEAVE_DIALOG))}>Spiel verlassen</Button>
                     </Centering>
 
                     <ConfirmDialog open={confirm?.show || false}

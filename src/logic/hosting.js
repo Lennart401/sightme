@@ -19,7 +19,10 @@ const reducers = {
             name: state["name"],
             expiresAt: state["expiresAt"],
             lat: state["latitude"],
-            lng: state["longitude"]
+            lng: state["longitude"],
+            assist: {
+                tendency: true // TODO add "enable" option for this
+            }
         };
 
         const parameter = Base64.encodeURI(JSON.stringify(gameData));

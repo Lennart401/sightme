@@ -47,7 +47,7 @@ const StateSnackbar = ({stateName, useAlert = true, severity = "error", actionNa
                 horizontal: 'left',
             }}
             open={open}
-            // autoHideDuration={6000}
+            autoHideDuration={6000}
             // action={action && <Button onClick={action} size="small" color="secondary">{actionName}</Button>}
             message={!useAlert && latestError}
             onClose={handleClose}
