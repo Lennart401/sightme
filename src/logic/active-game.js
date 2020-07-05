@@ -10,6 +10,7 @@ import moment from "moment";
  * @property {string} expiresAt - When the game expires, ISO 8601 date string
  * @property {number} lat - The host's latitude
  * @property {number} lng - The host's longitude
+ * @property {Object} assist - Assistance flags (e.g. tendency)
  */
 
 const storeKey = "active-game";

@@ -11,6 +11,7 @@ const GENERATE_LINK = makeActionName(storeKey, "generate-link");
 const SET_USERNAME = makeActionName(storeKey, "set-username");
 const SET_EXPIRES_AT = makeActionName(storeKey, "set-create-date");
 const SET_LAT_LNG = makeActionName(storeKey, "set-lat-lng");
+const SET_ENABLE_TENDENCY = makeActionName(storeKey, "set-enable-tendency");
 
 const reducers = {
     [GENERATE_LINK]: (state) => produce(state, draft => {
@@ -21,7 +22,7 @@ const reducers = {
             lat: state["latitude"],
             lng: state["longitude"],
             assist: {
-                tendency: true // TODO add "enable" option for this
+                tendency: state["assist-tendency"]
             }
         };
 
@@ -34,7 +35,8 @@ const reducers = {
     [SET_LAT_LNG]: (state, {lat, lng}) => produce(state, draft => {
         draft["latitude"] = lat;
         draft["longitude"] = lng;
-    })
+    }),
+    [SET_ENABLE_TENDENCY]: (state, tendency) => produce(state, draft => {draft["assist-tendency"] = tendency})
 };
 
 // EXPORTS -- setters
@@ -50,6 +52,9 @@ export const setExpiresAt = (createDate) =>
 export const setLatLng = (lat, lng) =>
     store.dispatch({type: SET_LAT_LNG, payload: {lat, lng}});
 
+export const setEnableTendency = (tendency) =>
+    store.dispatch({type: SET_ENABLE_TENDENCY, payload: tendency});
+
 // const initialState = {
 //     latitude: 53.3037056,
 //     longitude: 10.544742399999999,
@@ -58,7 +63,11 @@ export const setLatLng = (lat, lng) =>
 //     link: 'http://localhost:3000/sightme/join/eyJuYW1lIjoiTGVubmFydCIsImV4cGlyZXNBdCI6IjIwMjAtMDctMDRUMjI6NTM6MjBaIiwibGF0Ijo1My4zMDM3MDU2LCJsbmciOjEwLjU0NDc0MjM5OTk5OTk5OX0'
 // };
 
-store.injectReducer(storeKey, (state = {}, {type, payload}) =>
+const initialState = {
+    "assist-tendency": true
+};
+
+store.injectReducer(storeKey, (state = initialState, {type, payload}) =>
     reducers[type] ? reducers[type](state, payload) : state
 );
 
@@ -67,4 +76,10 @@ export const useLink = () => {
     const [state, setState] = useState(getState(storeKey));
     useLayoutEffect(() => subscribe(storeKey, setState), [setState]);
     return state["link"];
+};
+
+export const useEnableTendency = () => {
+    const [state, setState] = useState(getState(storeKey));
+    useLayoutEffect(() => subscribe(storeKey, setState), [setState]);
+    return state["assist-tendency"];
 };

@@ -11,12 +11,15 @@ import Centering from "./centering";
 import Placeholder from "./placeholder";
 import Button from "@material-ui/core/Button";
 import useCheckedTextfield from "./checked-textfield";
-import { setUsername } from "../../logic/hosting";
+import { setEnableTendency, setUsername, useEnableTendency } from "../../logic/hosting";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export const ENTER_NAME_DIALOG = "enter-name-dialog";
 
 const EnterNameDialog = ({onSubmit, onClose}) => {
     const state = useDialogState(ENTER_NAME_DIALOG);
+    const enableTendency = useEnableTendency();
     const {validate, text, component} = useCheckedTextfield({placeholder: "Dein Name"}, 20);
 
     return (
@@ -30,6 +33,8 @@ const EnterNameDialog = ({onSubmit, onClose}) => {
                     <Caption>Damit wissen die Teilnehmer, dass sie wirklich deinem Spiel beitreten.</Caption>
                     <Placeholder/>
                     {component}
+                    <Placeholder/>
+                    <FormControlLabel control={<Switch checked={enableTendency} onChange={event => setEnableTendency(event.target.checked)}/>} label="Tendenz aktivieren?" labelPlacement="start"/>
                 </Centering>
             </DialogContent>
             <DialogActions>
