@@ -64,6 +64,11 @@ export const setEnableTendency = (tendency) =>
 // };
 
 const initialState = {
+    // latitude: 53.3037056,
+    // longitude: 10.544742399999999,
+    // expiresAt: '2020-07-04T22:53:20Z',
+    // name: 'Lennart',
+    // link: 'http://localhost:3000/sightme/join/eyJuYW1lIjoiTGVubmFydCIsImV4cGlyZXNBdCI6IjIwMjAtMDctMDRUMjI6NTM6MjBaIiwibGF0Ijo1My4zMDM3MDU2LCJsbmciOjEwLjU0NDc0MjM5OTk5OTk5OX0',
     "assist-tendency": true
 };
 

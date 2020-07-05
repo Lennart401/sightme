@@ -34,7 +34,10 @@ const EnterNameDialog = ({onSubmit, onClose}) => {
                     <Placeholder/>
                     {component}
                     <Placeholder/>
-                    <FormControlLabel control={<Switch checked={enableTendency} onChange={event => setEnableTendency(event.target.checked)}/>} label="Tendenz aktivieren?" labelPlacement="start"/>
+                    <FormControlLabel
+                        control={<Switch checked={enableTendency} onChange={event => setEnableTendency(event.target.checked)}/>}
+                        label="Richtungs-Tendenz anzeigen?"
+                        labelPlacement="start"/>
                 </Centering>
             </DialogContent>
             <DialogActions>

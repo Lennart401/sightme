@@ -11,6 +11,7 @@ import blue from "@material-ui/core/colors/blue";
 import { ThemeProvider } from "@material-ui/styles";
 import green from "@material-ui/core/colors/green";
 import StateSnackbar from "./ui/components/state-snackbar";
+import SharePage from "./ui/pages/share-page";
 
 const theme = createMuiTheme({
     palette: {
@@ -54,7 +55,17 @@ const theme = createMuiTheme({
             root: {
                 flexWrap: "nowrap"
             }
-        }
+        },
+        MuiSwitch: {
+            root: {
+                width: "48px"
+            },
+            switchBase: {
+                "&$checked": {
+                    transform: "translateX(10px)"
+                }
+            }
+        },
     },
     props: {
         MuiButton: {
@@ -74,6 +85,7 @@ const theme = createMuiTheme({
 const routes = {
     "/": () => <IndexPage/>,
     "/host": () => <HostPage/>,
+    "/share": () => <SharePage/>,
     "/join/:game": ({game}) => <JoinPage gameBase64={game}/>,
     "/play": () => <PlayPage/>
 };
