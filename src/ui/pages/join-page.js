@@ -30,8 +30,13 @@ const useStyles = makeStyles(() => ({
 const JoinPage = ({gameBase64}) => {
     const classes = useStyles();
 
-    const game = JSON.parse(Base64.decode(gameBase64));
+    let game = undefined;
+    try {
+        game = JSON.parse(Base64.decode(gameBase64));
+    } catch (e) {}
+
     const validHours = moment(game?.expiresAt).diff(moment(), 'hours');
+    const isValid = moment().isBefore(moment(game?.expiresAt));
 
     const handleClickJoin = () => {
         setActiveGame(game);
@@ -49,10 +54,10 @@ const JoinPage = ({gameBase64}) => {
                     {game && (
                         <Fragment>
                             <Typography variant="h4">Host: {game?.name}</Typography><br/>
-                            {validHours >= 0 && (
+                            {isValid && (
                                 <Typography variant="body1">gültig für die nächsten {validHours} Stunde(n)</Typography>
                             )}
-                            {validHours < 0 && (
+                            {!isValid && (
                                 <Typography variant="body1">Das Spiel ist bereit abgelaufen, du kannst ihm nicht mehr beitreten.</Typography>
                             )}
                         </Fragment>
@@ -64,7 +69,7 @@ const JoinPage = ({gameBase64}) => {
             </Content>
 
             <Box className={classes.container}>
-                <Button onClick={handleClickJoin}>Spiel beitreten</Button>
+                <Button onClick={handleClickJoin} disabled={!game || !isValid}>Spiel beitreten</Button>
                 <LinkedButton href={"/"} variant="text" color="inherit" style={{marginTop: "6px"}}>Abbrechen</LinkedButton>
             </Box>
         </Fragment>

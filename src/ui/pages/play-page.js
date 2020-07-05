@@ -4,7 +4,6 @@ import Content from "../components/content";
 import PageTitle from "../components/page-title";
 import { leaveActiveGame, useActiveGame } from "../../logic/active-game";
 import { navigate } from "hookrouter";
-import { setMessage } from "../../logic/messages";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -48,11 +47,6 @@ const PlayPage = () => {
     const [useAnimation, setUseAnimation] = useState(true);
     const [savedFrequency, setSavedFrequency] = useState(0.8);
 
-    if (!game.name) {
-        navigate("/");
-        setMessage("Kein aktives Spiel gefunden!");
-    }
-
     const handleLeave = () => {
         leaveActiveGame();
         navigate("/");
@@ -79,38 +73,51 @@ const PlayPage = () => {
     return (
         <Fragment>
             <BackBar href={"/"}/>
-            <Content>
-                <PageTitle standard="Finde " colored={game.name}/>
-                <Placeholder/>
+            {game && (
+                <Fragment>
+                    <Content>
+                        <PageTitle standard="Finde " colored={game.name}/>
+                        <Placeholder/>
 
-                <Centering>
-                    <Box className={classes.oneToOneContainer}>
-                        <Box style={{
-                            position: "absolute",
-                            top: 0, left: 0, bottom: 0, right: 0,
-                            animation: useAnimation ? `ripple ${(1 / savedFrequency)}s ease-out infinite` : "none"
-                        }}
-                             className="ripple"
-                             onAnimationIteration={handleIteration}/>
-                    </Box>
+                        <Centering>
+                            <Box className={classes.oneToOneContainer}>
+                                <Box style={{
+                                    position: "absolute",
+                                    top: 0, left: 0, bottom: 0, right: 0,
+                                    animation: useAnimation ? `ripple ${(1 / savedFrequency)}s ease-out infinite` : "none"
+                                }}
+                                     className="ripple"
+                                     onAnimationIteration={handleIteration}/>
+                            </Box>
 
-                    <Placeholder/>
-                    <Typography variant="body1">Distanz {displayDistance}</Typography>
-                </Centering>
-            </Content>
+                            <Placeholder/>
+                            <Typography variant="body1">Distanz {displayDistance}</Typography>
+                        </Centering>
+                    </Content>
 
-            <Placeholder factor={3}/>
+                    <Placeholder factor={3}/>
 
-            <Centering className={classes.buttonWrapper}>
-                <Button onClick={() => executeWithDelay(() => showDialog(CONFIRM_LEAVE_DIALOG))}>Spiel
-                    verlassen</Button>
-            </Centering>
+                    <Centering className={classes.buttonWrapper}>
+                        <Button onClick={() => executeWithDelay(() => showDialog(CONFIRM_LEAVE_DIALOG))}>Spiel
+                            verlassen</Button>
+                    </Centering>
 
-            <ConfirmDialog open={confirm?.show || false}
-                           title="Spiel verlassen"
-                           text="Möchtest du das Spiel wirklich verlassen?"
-                           onNo={() => hideDialog(CONFIRM_LEAVE_DIALOG)}
-                           onYes={handleLeave}/>
+                    <ConfirmDialog open={confirm?.show || false}
+                                   title="Spiel verlassen"
+                                   text="Möchtest du das Spiel wirklich verlassen?"
+                                   onNo={() => hideDialog(CONFIRM_LEAVE_DIALOG)}
+                                   onYes={handleLeave}/>
+                </Fragment>
+            )}
+            {!game && (
+                <Content>
+                    <PageTitle standard="Finde " colored="???"/>
+                    <Placeholder factor={2}/>
+                    <Centering>
+                        <Typography variant="h5">Es wurde kein aktives Spiel gefunden. Bitte trete erst einem Spiel bei.</Typography>
+                    </Centering>
+                </Content>
+            )}
         </Fragment>
     );
 };

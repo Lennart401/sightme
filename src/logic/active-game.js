@@ -54,8 +54,13 @@ export const useActiveGame = () => {
     if (state) {
         if (moment().isAfter(state["expiresAt"])) {
             leaveActiveGame();
+            return undefined;
         }
     }
 
-    return state;
+    if (state?.name) {
+        return state;
+    }
+
+    return undefined;
 };

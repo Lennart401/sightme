@@ -14,7 +14,7 @@ const ConfirmDialog = ({open, text, onYes, onNo}) => {
                     <Typography variant="body1">{text}</Typography>
                 </Centering>
             </DialogContent>
-            <DialogActions style={{flexDirection: "row", justifyContent: "center"}}>
+            <DialogActions style={{flexDirection: "row", justifyContent: "center", alignItems: "baseline", paddingBottom: "16px"}}>
                 <Button variant="text" color="inherit" onClick={onNo}>Nein</Button>
                 <Button onClick={onYes}>Ja</Button>
             </DialogActions>

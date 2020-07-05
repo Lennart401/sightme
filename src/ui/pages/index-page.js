@@ -19,10 +19,10 @@ const IndexPage = () => {
                 <LinkedButton href={"/host"}>Spiel erstellen</LinkedButton>
                 <Placeholder/>
 
-                {game.name && (
+                {game && (
                     <LinkedButton href={"/play"}>{game.name}'s Spiel</LinkedButton>
                 )}
-                {!game.name && (
+                {!game && (
                     <Caption>Du nimmst aktuell an keinem aktiven Spiel teil. Du erhältst vom Spielleiter einen Link zum Beitreten.</Caption>
                 )}
             </Centering>
