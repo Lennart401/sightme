@@ -7,23 +7,21 @@ import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import Centering from "../components/centering";
 import Placeholder from "../components/placeholder";
-import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import LinkedButton from "../components/linked-button";
 import Button from "@material-ui/core/Button";
 import { setActiveGame } from "../../logic/active-game";
 import { navigateWithDelay } from "../../logic/with-delay";
+import FullHeightWrapper from "../components/full-height-wrapper";
+import FullHeightContent from "../components/full-height-content";
 
 const useStyles = makeStyles(() => ({
-    container: {
+    buttonBox: {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
-        position: "absolute",
-        bottom: 0,
-        width: "100%",
-        marginBottom: "8px"
+        marginBottom: "8px",
     }
 }));
 
@@ -44,9 +42,9 @@ const JoinPage = ({gameBase64}) => {
     };
 
     return (
-        <Fragment>
+        <FullHeightWrapper>
             <BackBar href={"/"}/>
-            <Content>
+            <FullHeightContent>
                 <PageTitle standard="Einem Spiel beitreten"/>
                 <Placeholder factor={2}/>
 
@@ -66,13 +64,13 @@ const JoinPage = ({gameBase64}) => {
                         <Typography variant="h5">Im Link befindet sich kein gültiges Spiel. Bitte deinen Spielleiter, dir den Link noch einmal zu schicken.</Typography>
                     )}
                 </Centering>
-            </Content>
+            </FullHeightContent>
 
-            <Box className={classes.container}>
+            <Content className={classes.buttonBox}>
                 <Button onClick={handleClickJoin} disabled={!game || !isValid}>Spiel beitreten</Button>
                 <LinkedButton href={"/"} variant="text" color="inherit" style={{marginTop: "6px"}}>Abbrechen</LinkedButton>
-            </Box>
-        </Fragment>
+            </Content>
+        </FullHeightWrapper>
     );
 };
 

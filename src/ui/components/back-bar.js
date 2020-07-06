@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: "3vh"
     },
     offset: theme.mixins.toolbar,
+    morePadding: {
+        paddingLeft: "22px",
+        paddingRight: "22px"
+    }
 }));
 
 const BackBar = ({href, onClick}) => {
@@ -21,7 +25,7 @@ const BackBar = ({href, onClick}) => {
     return (
         <Fragment>
             <AppBar position="sticky" className={classes.offsetFromTop} color="transparent" elevation={0}>
-                <Toolbar>
+                <Toolbar className={classes.morePadding}>
                     {href && (
                         <LinkedIconButton href={href} edge="start" aria-label="back">
                             <ArrowBackRounded/>

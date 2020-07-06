@@ -12,6 +12,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import green from "@material-ui/core/colors/green";
 import StateSnackbar from "./ui/components/state-snackbar";
 import SharePage from "./ui/pages/share-page";
+import AboutPage from "./ui/pages/about-page";
 
 const theme = createMuiTheme({
     palette: {
@@ -87,7 +88,8 @@ const routes = {
     "/host": () => <HostPage/>,
     "/share": () => <SharePage/>,
     "/join/:game": ({game}) => <JoinPage gameBase64={game}/>,
-    "/play": () => <PlayPage/>
+    "/play": () => <PlayPage/>,
+    "/about": () => <AboutPage/>
 };
 
 const App = () => {

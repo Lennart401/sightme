@@ -1,9 +1,9 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-const Caption = ({children}) => {
+const Caption = ({children, margin = "2em"}) => {
     return (
-        <Typography variant="body2" color="textSecondary" style={{marginLeft: "2em", marginRight: "2em"}}>{children}</Typography>
+        <Typography variant="body2" color="textSecondary" style={{marginLeft: margin, marginRight: margin}}>{children}</Typography>
     );
 };
 

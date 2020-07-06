@@ -1,10 +1,10 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 
-const Content = ({children}) => {
+const Content = (props) => {
     return (
-        <Box style={{marginLeft: "16px", marginRight: "16px"}}>
-            {children}
+        <Box {...props} style={{marginLeft: "24px", marginRight: "24px"}}>
+            {props.children}
         </Box>
     );
 };
