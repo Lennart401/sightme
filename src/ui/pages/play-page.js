@@ -41,6 +41,11 @@ const PlayPage = () => {
     const [lastDistance, setLastDistance] = useState(2500);
     const [tendency, setTendency] = useState(null);
 
+    if (lastDistance !== distance) {
+        setTendency(distance < lastDistance ? 'up' : 'down');
+        setLastDistance(distance);
+    }
+
     const handleIteration = () => {
         if (lastFrequency !== frequency) {
             setLastFrequency(frequency);
@@ -48,9 +53,6 @@ const PlayPage = () => {
             setTimeout(() => {
                 setUseAnimation(true);
             }, 10);
-
-            setTendency(distance < lastDistance ? 'up' : 'down');
-            setLastDistance(distance);
         }
     };
 
