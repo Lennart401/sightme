@@ -26,7 +26,7 @@ const HostPage = () => {
         generateLink();
         executeWithDelay(() => {
             hideDialog(ENTER_NAME_DIALOG);
-            navigate("/share");
+            navigate("/share", true);
         });
     };
 
