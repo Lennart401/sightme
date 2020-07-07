@@ -12,6 +12,7 @@ import Placeholder from "../components/placeholder";
 import { LinkRounded } from "@material-ui/icons";
 import { version } from "../../version";
 import Link from "@material-ui/core/Link";
+import { useTitle } from "hookrouter";
 
 const useStyles = makeStyles(() => ({
     bottom: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const AboutPage = () => {
+    useTitle("Über | SightMe");
     const classes = useStyles();
 
     return (
@@ -52,6 +54,8 @@ const AboutPage = () => {
                 <Placeholder/>
                 <SectionTitle standard="Links"/>
                 <Typography variant="body1"><LinkRounded/> <Link href="https://github.com/Lennart401/sightme" className={classes.link}>github.com/Lennart401/sightme</Link></Typography>
+
+                <Placeholder/>
             </FullHeightContent>
 
             <Content>

@@ -13,6 +13,7 @@ import LinkedLink from "../components/linked-link";
 import { ShareRounded } from "@material-ui/icons";
 import { setMessage } from "../../logic/messages";
 import Button from "@material-ui/core/Button";
+import { useTitle } from "hookrouter";
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -33,6 +34,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SharePage = () => {
+    useTitle("Link zum Spiel teilen | SightMe");
     const classes = useStyles();
     const link = useLink();
 

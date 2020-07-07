@@ -14,9 +14,10 @@ import { executeWithDelay } from "../../logic/with-delay";
 import { generateLink, setExpiresAt, setLatLng } from "../../logic/hosting";
 import moment from "moment";
 import SectionTitle from "../components/section-title";
-import { navigate } from "hookrouter";
+import { navigate, useTitle } from "hookrouter";
 
 const HostPage = () => {
+    useTitle("Spiel hosten | SightMe");
     const location = useGeolocation();
 
     // Dialog-Methods

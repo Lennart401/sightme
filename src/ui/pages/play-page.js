@@ -3,7 +3,7 @@ import BackBar from "../components/back-bar";
 import Content from "../components/content";
 import PageTitle from "../components/page-title";
 import { leaveActiveGame, useActiveGame } from "../../logic/active-game";
-import { navigate } from "hookrouter";
+import { navigate, useTitle } from "hookrouter";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Centering from "../components/centering";
@@ -33,6 +33,8 @@ const PlayPage = () => {
     const {distance, frequency} = useDistance();
     const classes = useStyles();
     const confirm = useDialogState(CONFIRM_LEAVE_DIALOG);
+
+    useTitle(`Finde ${game?.name} | SightMe`);
 
     const [useAnimation, setUseAnimation] = useState(true);
     const [lastFrequency, setLastFrequency] = useState(0.8);

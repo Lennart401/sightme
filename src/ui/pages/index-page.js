@@ -10,6 +10,7 @@ import Content from "../components/content";
 import FullHeightWrapper from "../components/full-height-wrapper";
 import FullHeightContent from "../components/full-height-content";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTitle } from "hookrouter";
 
 const useStyles = makeStyles(() => ({
     about: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const IndexPage = () => {
+    useTitle("SightMe");
     const game = useActiveGame();
     const classes = useStyles();
 

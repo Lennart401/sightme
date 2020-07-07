@@ -14,6 +14,7 @@ import { setActiveGame } from "../../logic/active-game";
 import { navigateWithDelay } from "../../logic/with-delay";
 import FullHeightWrapper from "../components/full-height-wrapper";
 import FullHeightContent from "../components/full-height-content";
+import { useTitle } from "hookrouter";
 
 const useStyles = makeStyles(() => ({
     buttonBox: {
@@ -32,6 +33,8 @@ const JoinPage = ({gameBase64}) => {
     try {
         game = JSON.parse(Base64.decode(gameBase64));
     } catch (e) {}
+
+    useTitle(`${game?.name} beitreten | SightMe`);
 
     const validHours = moment(game?.expiresAt).diff(moment(), 'hours');
     const isValid = moment().isBefore(moment(game?.expiresAt));
