@@ -2,6 +2,14 @@ import useGeolocation from "./use-geolocation";
 import getDistance from "geolib/es/getDistance";
 import { useActiveGame } from "./active-game";
 
+const exp = {
+    fmin: 0.15,
+    fmax: 5,
+    d: 4000
+};
+
+const b = (Math.log(exp.fmin / exp.fmax)) / exp.d;
+
 const useDistance = () => {
     const location = useGeolocation();
     const game = useActiveGame();
@@ -13,7 +21,7 @@ const useDistance = () => {
             1
         );
 
-        const frequency = 5 * Math.pow(Math.E, -0.001168 * distance);
+        const frequency = exp.fmax * Math.pow(Math.E, b * distance);
 
         return {distance, frequency};
     } else {
