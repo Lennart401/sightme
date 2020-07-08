@@ -1,6 +1,6 @@
 # SightMe Web Application
 
-SightMe is a web application where multiple people can play a game in which the host hides somewhere in the city, and the participants have to find him using only the rough distance to him. The distance is indicated using a blinking circle which will blink faster the closer you get to the target. It is only available in the german language.
+SightMe is a progressive web application where multiple people can play a game in which the host hides somewhere in the city, and the participants have to find him using only the rough distance to him. The distance is indicated using a blinking circle which will blink faster the closer you get to the target. It is only available in the german language.
 
 The icon is the `location_on` icon from the material design icon library [(Link)](https://material.io/resources/icons/?icon=location_on&style=baseline) colored in the app's primary color.
 
@@ -14,7 +14,10 @@ The host creates a new game and will generate a link based on his nickname and p
         "name": "Host name",
         "expiresAt": "<ISO-8601 Date>",
         "lat": 0.00,
-        "lng": 0.00
+        "lng": 0.00,
+        "assist": {
+            "tendency": true|false
+        }
     }
     
 The link can be shared with all participants via third-party software.    
