@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     },
     offset: theme.mixins.toolbar,
     morePadding: {
-        paddingLeft: "20px",
-        paddingRight: "20px"
+        paddingLeft: "21px",
+        paddingRight: "21px"
     }
 }));
 
