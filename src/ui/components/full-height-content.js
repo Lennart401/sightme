@@ -1,13 +1,21 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 import Content from "./content";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+    fullHeightContent: {
+        flexGrow: 1,
+        flexShrink: 1,
+        flexBasis: "auto"
+    }
+}));
 
 const FullHeightContent = (props) => {
+    const classes = useStyles();
+
     return (
-        <Box style={{
-            flexGrow: 1,
-            flexShrink: 1
-        }}>
+        <Box className={classes.fullHeightContent}>
             <Content {...props}>
                 {props.children}
             </Content>

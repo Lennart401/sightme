@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import LinkedIconButton from "./linked-icon-button";
 import { ArrowBackRounded } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
+import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
     offsetFromTop: {
@@ -24,7 +25,7 @@ const BackBar = ({href, onClick}) => {
 
     return (
         <Fragment>
-            <AppBar position="sticky" className={classes.offsetFromTop} color="transparent" elevation={0}>
+            <AppBar position="fixed" className={classes.offsetFromTop} color="transparent" elevation={0}>
                 <Toolbar className={classes.morePadding}>
                     {href && (
                         <LinkedIconButton href={href} edge="start" aria-label="back">
@@ -38,7 +39,7 @@ const BackBar = ({href, onClick}) => {
                     )}
                 </Toolbar>
             </AppBar>
-            {/*<div className={classes.offset}/>*/}
+            <div className={classNames(classes.offset, classes.offsetFromTop)}/>
         </Fragment>
     );
 };
