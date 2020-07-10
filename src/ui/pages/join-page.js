@@ -1,13 +1,11 @@
 import React, { Fragment } from "react";
 import { Base64 } from "js-base64";
 import BackBar from "../components/back-bar";
-import Content from "../components/content";
 import PageTitle from "../components/page-title";
 import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import Centering from "../components/centering";
 import Placeholder from "../components/placeholder";
-import { makeStyles } from "@material-ui/core/styles";
 import LinkedButton from "../components/linked-button";
 import Button from "@material-ui/core/Button";
 import { setActiveGame } from "../../logic/active-game";
@@ -15,20 +13,9 @@ import { navigateWithDelay } from "../../logic/with-delay";
 import FullHeightWrapper from "../components/full-height-wrapper";
 import FullHeightContent from "../components/full-height-content";
 import { useTitle } from "hookrouter";
-
-const useStyles = makeStyles(() => ({
-    buttonBox: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "8px",
-    }
-}));
+import ButtonBox from "../components/button-box";
 
 const JoinPage = ({gameBase64}) => {
-    const classes = useStyles();
-
     let game = undefined;
     try {
         game = JSON.parse(Base64.decode(gameBase64));
@@ -69,10 +56,10 @@ const JoinPage = ({gameBase64}) => {
                 </Centering>
             </FullHeightContent>
 
-            <Content className={classes.buttonBox}>
+            <ButtonBox>
                 <Button onClick={handleClickJoin} disabled={!game || !isValid}>Spiel beitreten</Button>
                 <LinkedButton href={"/"} variant="text" color="inherit" style={{marginTop: "6px"}}>Abbrechen</LinkedButton>
-            </Content>
+            </ButtonBox>
         </FullHeightWrapper>
     );
 };
