@@ -1,7 +1,7 @@
-import React from "react";
-import { generateLink, setEnableTendency, setUsername, useEnableTendency } from "../../logic/hosting";
+import React, { useEffect } from "react";
+import { generateLink, setEnableTendency, setUsername, useCurrentData, useEnableTendency } from "../../logic/hosting";
 import useCheckedTextfield from "../components/checked-textfield";
-import { useTitle } from "hookrouter";
+import { navigate, useTitle } from "hookrouter";
 import FullHeightWrapper from "../components/full-height-wrapper";
 import BackBar from "../components/back-bar";
 import FullHeightContent from "../components/full-height-content";
@@ -22,6 +22,13 @@ const EnterNamePage = () => {
 
     const enableTendency = useEnableTendency();
     const {validate, text, component} = useCheckedTextfield({placeholder: "Dein Name"}, 20);
+    const currentData = useCurrentData();
+
+    useEffect(() => {
+        if (!currentData.latitude || !currentData.longitude) {
+            navigate("/host");
+        }
+    }, [currentData]);
 
     const onSubmit = () => {
         generateLink();

@@ -88,3 +88,9 @@ export const useEnableTendency = () => {
     useLayoutEffect(() => subscribe(storeKey, setState), [setState]);
     return state["assist-tendency"];
 };
+
+export const useCurrentData = () => {
+    const [state, setState] = useState(getState(storeKey));
+    useLayoutEffect(() => subscribe(storeKey, setState), [setState]);
+    return state;
+};
