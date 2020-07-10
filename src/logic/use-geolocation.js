@@ -8,6 +8,10 @@ const useGeolocation = () => {
         if (navigator.geolocation) {
             id = navigator.geolocation.watchPosition(position => {
                 setLocation(position);
+            }, () => {}, {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
             });
         }
 
