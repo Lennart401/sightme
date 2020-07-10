@@ -13,6 +13,7 @@ import green from "@material-ui/core/colors/green";
 import StateSnackbar from "./ui/components/state-snackbar";
 import SharePage from "./ui/pages/share-page";
 import AboutPage from "./ui/pages/about-page";
+import EnterNamePage from "./ui/pages/enter-name-page";
 
 const theme = createMuiTheme({
     palette: {
@@ -86,6 +87,7 @@ const theme = createMuiTheme({
 const routes = {
     "/": () => <IndexPage/>,
     "/host": () => <HostPage/>,
+    "/host/enter-name": () => <EnterNamePage/>,
     "/share": () => <SharePage/>,
     "/join/:game": ({game}) => <JoinPage gameBase64={game}/>,
     "/play": () => <PlayPage/>,

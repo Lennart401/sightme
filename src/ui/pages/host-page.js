@@ -8,33 +8,22 @@ import Button from "@material-ui/core/Button";
 import Placeholder from "../components/placeholder";
 import Centering from "../components/centering";
 import Caption from "../components/caption";
-import { hideDialog, showDialog } from "../../logic/dialogs";
-import EnterNameDialog, { ENTER_NAME_DIALOG } from "../components/enter-name-dialog";
-import { executeWithDelay } from "../../logic/with-delay";
-import { generateLink, setExpiresAt, setLatLng } from "../../logic/hosting";
+import { navigateWithDelay } from "../../logic/with-delay";
+import { setExpiresAt, setLatLng } from "../../logic/hosting";
 import moment from "moment";
 import SectionTitle from "../components/section-title";
-import { navigate, useTitle } from "hookrouter";
+import { useTitle } from "hookrouter";
 
 const HostPage = () => {
     useTitle("Spiel hosten | SightMe");
     const location = useGeolocation();
 
-    // Dialog-Methods
-    const handleClose = () => executeWithDelay(() => hideDialog(ENTER_NAME_DIALOG));
-    const handleSubmit = () => {
-        generateLink();
-        executeWithDelay(() => {
-            hideDialog(ENTER_NAME_DIALOG);
-            navigate("/share", true);
-        });
-    };
-
     // Create button handler --> opens dialog
     const handleClickCreate = () => {
         setLatLng(location.coords.latitude, location.coords.longitude);
         setExpiresAt(moment().add(1, 'days').utc().format());
-        executeWithDelay(() => showDialog(ENTER_NAME_DIALOG));
+        // executeWithDelay(() => showDialog(ENTER_NAME_DIALOG));
+        navigateWithDelay("/host/enter-name");
     };
 
     return (
@@ -59,9 +48,6 @@ const HostPage = () => {
                     )}
                 </Centering>
             </Content>
-
-            {/* The "enter name"-dialog with references to corresponding action handler methods */}
-            <EnterNameDialog onSubmit={handleSubmit} onClose={handleClose}/>
         </Fragment>
     );
 };
