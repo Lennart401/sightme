@@ -14,6 +14,7 @@ import StateSnackbar from "./ui/components/state-snackbar";
 import SharePage from "./ui/pages/share-page";
 import AboutPage from "./ui/pages/about-page";
 import EnterNamePage from "./ui/pages/enter-name-page";
+import GameOptionsPage from "./ui/pages/game-options-page";
 
 const theme = createMuiTheme({
     palette: {
@@ -88,6 +89,7 @@ const routes = {
     "/": () => <IndexPage/>,
     "/host": () => <HostPage/>,
     "/host/enter-name": () => <EnterNamePage/>,
+    "/host/game-options": () => <GameOptionsPage/>,
     "/share": () => <SharePage/>,
     "/join/:game": ({game}) => <JoinPage gameBase64={game}/>,
     "/play": () => <PlayPage/>,

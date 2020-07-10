@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { generateLink, setEnableTendency, setUsername, useCurrentData, useEnableTendency } from "../../logic/hosting";
+import { setUsername, useCurrentData } from "../../logic/hosting";
 import useCheckedTextfield from "../components/checked-textfield";
 import { navigate, useTitle } from "hookrouter";
 import FullHeightWrapper from "../components/full-height-wrapper";
@@ -11,8 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import Centering from "../components/centering";
 import Caption from "../components/caption";
 import Placeholder from "../components/placeholder";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import LinkedButton from "../components/linked-button";
 import { navigateWithDelay } from "../../logic/with-delay";
@@ -20,7 +18,6 @@ import { navigateWithDelay } from "../../logic/with-delay";
 const EnterNamePage = () => {
     useTitle("Spiel hosten | SightMe");
 
-    const enableTendency = useEnableTendency();
     const {validate, text, component} = useCheckedTextfield({placeholder: "Dein Name"}, 20);
     const currentData = useCurrentData();
 
@@ -31,8 +28,7 @@ const EnterNamePage = () => {
     }, [currentData]);
 
     const onSubmit = () => {
-        generateLink();
-        navigateWithDelay("/share", true);
+        navigateWithDelay("game-options");
     };
 
     return (
@@ -48,10 +44,6 @@ const EnterNamePage = () => {
                     <Placeholder/>
                     {component}
                     <Placeholder/>
-                    <FormControlLabel
-                        control={<Switch checked={enableTendency} onChange={event => setEnableTendency(event.target.checked)}/>}
-                        label="Richtungs-Tendenz anzeigen"
-                        labelPlacement="start"/>
                 </Centering>
             </FullHeightContent>
 
@@ -61,8 +53,8 @@ const EnterNamePage = () => {
                         setUsername(text);
                         onSubmit();
                     }
-                }}>Spiel erstellen</Button>
-                <LinkedButton variant="text" color="inherit" href={"/host"}>Abbrechen</LinkedButton>
+                }}>Weiter</Button>
+                <LinkedButton variant="text" color="inherit" href={"/host"}>Zurück</LinkedButton>
             </ButtonBox>
         </FullHeightWrapper>
     );
