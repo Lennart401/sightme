@@ -10,6 +10,10 @@ const useStyles = makeStyles(() => ({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: "8px",
+
+        "& > :not(:first-child)": {
+            marginTop: "6px"
+        }
     }
 }));
 
