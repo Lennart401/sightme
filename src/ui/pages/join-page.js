@@ -14,6 +14,7 @@ import FullHeightWrapper from "../components/full-height-wrapper";
 import FullHeightContent from "../components/full-height-content";
 import { useTitle } from "hookrouter";
 import ButtonBox from "../components/button-box";
+import Caption from "../components/caption";
 
 const JoinPage = ({gameBase64}) => {
     let game = undefined;
@@ -28,7 +29,12 @@ const JoinPage = ({gameBase64}) => {
 
     const handleClickJoin = () => {
         setActiveGame(game);
-        navigateWithDelay("/play");
+
+        if (game.assist?.dyndist) {
+            navigateWithDelay(`/join/${gameBase64}/confirm-position`);
+        } else {
+            navigateWithDelay("/play");
+        }
     };
 
     return (
@@ -48,6 +54,13 @@ const JoinPage = ({gameBase64}) => {
                             {!isValid && (
                                 <Typography variant="body1">Das Spiel ist bereit abgelaufen, du kannst ihm nicht mehr beitreten.</Typography>
                             )}
+
+                            {game?.assist?.dyndist && (
+                                <Fragment>
+                                    <Placeholder factor={2}/>
+                                    <Caption>Spiel mit dynamischer Distanz &mdash; du sieht nur den blinkenden Kreis, aber nicht die tatsächeliche Distanz zum Host</Caption>
+                                </Fragment>
+                            )}
                         </Fragment>
                     )}
                     {!game && (
@@ -58,7 +71,7 @@ const JoinPage = ({gameBase64}) => {
 
             <ButtonBox>
                 <Button onClick={handleClickJoin} disabled={!game || !isValid}>Spiel beitreten</Button>
-                <LinkedButton href={"/"} variant="text" color="inherit" style={{marginTop: "6px"}}>Abbrechen</LinkedButton>
+                <LinkedButton href={"/"} variant="text" color="inherit">Abbrechen</LinkedButton>
             </ButtonBox>
         </FullHeightWrapper>
     );

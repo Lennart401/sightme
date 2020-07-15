@@ -22,6 +22,7 @@ const BackBar = ({href, onClick}) => {
     const classes = useStyles();
 
     if (href) onClick = undefined;
+    if (!href && !onClick) onClick = () => window.history.back();
 
     return (
         <Fragment>

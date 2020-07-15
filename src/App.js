@@ -15,6 +15,7 @@ import SharePage from "./ui/pages/share-page";
 import AboutPage from "./ui/pages/about-page";
 import EnterNamePage from "./ui/pages/enter-name-page";
 import GameOptionsPage from "./ui/pages/game-options-page";
+import ConfirmPositionPage from "./ui/pages/confirm-position-page";
 
 const theme = createMuiTheme({
     palette: {
@@ -92,6 +93,7 @@ const routes = {
     "/host/game-options": () => <GameOptionsPage/>,
     "/share": () => <SharePage/>,
     "/join/:game": ({game}) => <JoinPage gameBase64={game}/>,
+    "/join/:game/confirm-position": ({game}) => <ConfirmPositionPage gameBase64={game}/>,
     "/play": () => <PlayPage/>,
     "/about": () => <AboutPage/>
 };
