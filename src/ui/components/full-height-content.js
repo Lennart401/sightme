@@ -7,7 +7,8 @@ const useStyles = makeStyles(() => ({
     fullHeightContent: {
         flexGrow: 1,
         flexShrink: 1,
-        flexBasis: "auto"
+        flexBasis: "auto",
+        width: "100%"
     }
 }));
 
