@@ -1,6 +1,5 @@
-import React, { Fragment, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import BackBar from "../components/back-bar";
-import Content from "../components/content";
 import PageTitle from "../components/page-title";
 import { leaveActiveGame, useActiveGame } from "../../logic/active-game";
 import { navigate, useTitle } from "hookrouter";
@@ -17,6 +16,9 @@ import Tendency from "../components/tendency";
 import Distance from "../components/distance";
 import LargeRipple from "../components/large-ripple";
 import ActiveGameWrapper from "../components/active-game-wrapper";
+import FullHeightWrapper from "../components/full-height-wrapper";
+import FullHeightContent from "../components/full-height-content";
+import ButtonBox from "../components/button-box";
 
 const useStyles = makeStyles(() => ({
     buttonWrapper: {
@@ -70,35 +72,34 @@ const PlayPage = () => {
     }, []);
 
     return (
-        <Fragment>
+        <FullHeightWrapper>
             <BackBar href={"/"}/>
             <ActiveGameWrapper>
-                <Fragment>
-                    <Content>
-                        <PageTitle standard="Finde " colored={game?.name}/>
+                <FullHeightContent>
+                    <PageTitle standard="Finde " colored={game?.name}/>
+                    <Placeholder/>
+
+                    <Centering>
+                        <LargeRipple enable={useAnimation} frequency={lastFrequency} handleIteration={handleIteration}/>
                         <Placeholder/>
-
-                        <Centering>
-                            <LargeRipple enable={useAnimation} frequency={lastFrequency} handleIteration={handleIteration}/>
-                            <Placeholder/>
-                            <Typography variant="body1"><Distance game={game} distance={lastDistance}/><Tendency game={game} tendency={tendency}/></Typography>
-                        </Centering>
-                    </Content>
-
-                    <Placeholder factor={3}/>
-
-                    <Centering className={classes.buttonWrapper}>
-                        <Button onClick={() => executeWithDelay(() => showDialog(CONFIRM_LEAVE_DIALOG))}>Spiel verlassen</Button>
+                        <Typography variant="body1">
+                            <Distance game={game} distance={lastDistance}/>
+                            <Tendency game={game} tendency={tendency}/>
+                        </Typography>
                     </Centering>
+                </FullHeightContent>
 
-                    <ConfirmDialog open={confirm?.show || false}
-                                   title="Spiel verlassen"
-                                   text="Möchtest du das Spiel wirklich verlassen?"
-                                   onNo={() => hideDialog(CONFIRM_LEAVE_DIALOG)}
-                                   onYes={handleLeave}/>
-                </Fragment>
+                <ButtonBox style={{marginBottom: "24px"}}>
+                    <Button onClick={() => executeWithDelay(() => showDialog(CONFIRM_LEAVE_DIALOG))}>Spiel verlassen</Button>
+                </ButtonBox>
+
+                <ConfirmDialog open={confirm?.show || false}
+                               title="Spiel verlassen"
+                               text="Möchtest du das Spiel wirklich verlassen?"
+                               onNo={() => hideDialog(CONFIRM_LEAVE_DIALOG)}
+                               onYes={handleLeave}/>
             </ActiveGameWrapper>
-        </Fragment>
+        </FullHeightWrapper>
     );
 };
 

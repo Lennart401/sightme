@@ -21,7 +21,7 @@ const ButtonBox = (props) => {
     const classes = useStyles();
 
     return (
-        <Content className={classNames(classes.buttonBox, props.className)}>
+        <Content style={props.style} className={classNames(props.className, classes.buttonBox)}>
             {props.children}
         </Content>
     );
