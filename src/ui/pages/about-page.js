@@ -9,7 +9,7 @@ import Centering from "../components/centering";
 import { makeStyles } from "@material-ui/core/styles";
 import SectionTitle from "../components/section-title";
 import Placeholder from "../components/placeholder";
-import { LinkRounded } from "@material-ui/icons";
+import { CodeRounded } from "@material-ui/icons";
 import { version } from "../../version";
 import Link from "@material-ui/core/Link";
 import { useTitle } from "hookrouter";
@@ -53,7 +53,7 @@ const AboutPage = () => {
 
                 <Placeholder/>
                 <SectionTitle standard="Links"/>
-                <Typography variant="body1"><LinkRounded/> <Link href="https://github.com/Lennart401/sightme" target="_blank" className={classes.link}>github.com/Lennart401/sightme</Link></Typography>
+                <Typography variant="body1"><CodeRounded/> <Link href="https://github.com/Lennart401/sightme" target="_blank" className={classes.link}>github.com/Lennart401/sightme</Link></Typography>
 
                 <Placeholder/>
             </FullHeightContent>
