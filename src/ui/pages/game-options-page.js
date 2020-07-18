@@ -23,6 +23,8 @@ const GameOptionsPage = () => {
 
     const enableTendency = useOption(options.TENDENCY);
     const enableDynamicDistance = useOption(options.DYNAMIC_DISTANCE);
+    const enableNoDistance = useOption(options.NO_DISTANCE);
+
     const currentData = useCurrentData();
 
     useEffect(() => {
@@ -48,17 +50,31 @@ const GameOptionsPage = () => {
                 <QuarterPageHeader noHorizontalPadding>
                     <Typography variant="h4" component="h1">Spieloptionen</Typography>
                 </QuarterPageHeader>
+
                 <LabelWithControl
                     label="Richtungs-Tendenz anzeigen"
                     control={<Switch checked={enableTendency} onChange={event => setOption(options.TENDENCY, event.target.checked)}/>}
                 />
                 <Caption>Zeige den Teilnehmern an, ob sie auf dich zu oder von dir weg laufen.</Caption>
+
                 <Placeholder/>
+
                 <LabelWithControl
                     label="Dynamisch Distanz verwenden"
                     control={<Switch checked={enableDynamicDistance} onChange={event => setOption(options.DYNAMIC_DISTANCE, event.target.checked)}/>}
                 />
-                <Caption>Den Teilnehmer nicht die Distanz zu dir anzeigen, sondern nur den blinkenden Kreis. Die Anfang- Blink- Frequenz wird dynamisch berechnet.</Caption>
+                <Caption>
+                    Wenn eingeschaltet, wird der blinkende Kreis beim Beitreten des Spiels dynamisch berechnet. Sinnvoll zusammen mit
+                    "Distanz ausblenden", wenn man nicht weit von den Teilnehmern entfernt ist.
+                </Caption>
+
+                <Placeholder/>
+
+                <LabelWithControl
+                    label="Distanz ausblenden"
+                    control={<Switch checked={enableNoDistance} onChange={event => setOption(options.NO_DISTANCE, event.target.checked)}/>}
+                />
+                <Caption>Den Teilnehmern nicht die Distanz zu dir anzeigen.</Caption>
             </FullHeightContent>
 
             <ButtonBox>

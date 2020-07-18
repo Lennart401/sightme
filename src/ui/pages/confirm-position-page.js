@@ -37,7 +37,7 @@ const ConfirmPositionPage = ({gameBase64}) => {
 
                     <Centering>
                         <Caption>
-                            Der Host hat festgelegt, dass dieses Spiel ohne Distanz-Anzeige gespielt wird.
+                            Der Host hat festgelegt, dass dieses Spiel mit dynamischer Distanz gespielt wird.
                             Bitte bestätige, dass du wirklich dort bist, wo du auf der Karte angezeigt wirst,
                             damit wir den blinkenden Kreis richtig berechnen können.
                         </Caption>

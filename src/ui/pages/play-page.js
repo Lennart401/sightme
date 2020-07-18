@@ -3,7 +3,6 @@ import BackBar from "../components/back-bar";
 import PageTitle from "../components/page-title";
 import { leaveActiveGame, useActiveGame } from "../../logic/active-game";
 import { navigate, useTitle } from "hookrouter";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Centering from "../components/centering";
 import { executeWithDelay } from "../../logic/with-delay";
@@ -20,21 +19,11 @@ import FullHeightWrapper from "../components/full-height-wrapper";
 import FullHeightContent from "../components/full-height-content";
 import ButtonBox from "../components/button-box";
 
-const useStyles = makeStyles(() => ({
-    buttonWrapper: {
-        position: "fixed",
-        bottom: 0,
-        width: "100%",
-        marginBottom: "24px"
-    },
-}));
-
 const CONFIRM_LEAVE_DIALOG = "confirm-leave-dialog";
 
 const PlayPage = () => {
     const game = useActiveGame();
     const {distance, frequency} = useDistance();
-    const classes = useStyles();
     const confirm = useDialogState(CONFIRM_LEAVE_DIALOG);
     useTitle(`Finde ${game?.name} | SightMe`);
 

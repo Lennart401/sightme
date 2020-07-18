@@ -1,5 +1,5 @@
 const Distance = ({game, distance}) => {
-    if (game.assist?.dyndist) {
+    if (game.assist?.nodist) {
         return "";
     }
 
