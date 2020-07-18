@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import { navigate, useTitle } from "hookrouter";
 import {
-    generateLink,
-    setEnableDynamicDistance,
-    setEnableTendency,
-    useCurrentData,
-    useEnableDynamicDistance,
-    useEnableTendency
+    generateLink, options, setOption,
+    useCurrentData, useOption,
 } from "../../logic/hosting";
 import { navigateWithDelay } from "../../logic/with-delay";
 import FullHeightWrapper from "../components/full-height-wrapper";
@@ -25,8 +21,8 @@ import Placeholder from "../components/placeholder";
 const GameOptionsPage = () => {
     useTitle("Spiel hosten | SightMe");
 
-    const enableTendency = useEnableTendency();
-    const enableDynamicDistance = useEnableDynamicDistance();
+    const enableTendency = useOption(options.TENDENCY);
+    const enableDynamicDistance = useOption(options.DYNAMIC_DISTANCE);
     const currentData = useCurrentData();
 
     useEffect(() => {
@@ -54,13 +50,13 @@ const GameOptionsPage = () => {
                 </QuarterPageHeader>
                 <LabelWithControl
                     label="Richtungs-Tendenz anzeigen"
-                    control={<Switch checked={enableTendency} onChange={event => setEnableTendency(event.target.checked)}/>}
+                    control={<Switch checked={enableTendency} onChange={event => setOption(options.TENDENCY, event.target.checked)}/>}
                 />
                 <Caption>Zeige den Teilnehmern an, ob sie auf dich zu oder von dir weg laufen.</Caption>
                 <Placeholder/>
                 <LabelWithControl
                     label="Dynamisch Distanz verwenden"
-                    control={<Switch checked={enableDynamicDistance} onChange={event => setEnableDynamicDistance(event.target.checked)}/>}
+                    control={<Switch checked={enableDynamicDistance} onChange={event => setOption(options.DYNAMIC_DISTANCE, event.target.checked)}/>}
                 />
                 <Caption>Den Teilnehmer nicht die Distanz zu dir anzeigen, sondern nur den blinkenden Kreis. Die Anfang- Blink- Frequenz wird dynamisch berechnet.</Caption>
             </FullHeightContent>
