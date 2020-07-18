@@ -43,7 +43,6 @@ const EnterNamePage = () => {
                     <Caption>Damit wissen die Teilnehmer, dass sie wirklich deinem Spiel beitreten.</Caption>
                     <Placeholder/>
                     {component}
-                    <Placeholder/>
                 </Centering>
             </FullHeightContent>
 

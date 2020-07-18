@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@material-ui/core";
 import Content from "./content";
 import { makeStyles } from "@material-ui/core/styles";
+import Placeholder from "./placeholder";
 
 const useStyles = makeStyles(() => ({
     fullHeightContent: {
@@ -19,6 +20,7 @@ const FullHeightContent = (props) => {
         <Box className={classes.fullHeightContent}>
             <Content {...props}>
                 {props.children}
+                <Placeholder/>
             </Content>
         </Box>
     );

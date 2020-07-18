@@ -54,8 +54,6 @@ const AboutPage = () => {
                 <Placeholder/>
                 <SectionTitle standard="Links"/>
                 <Typography variant="body1"><CodeRounded/> <Link href="https://github.com/Lennart401/sightme" target="_blank" className={classes.link}>github.com/Lennart401/sightme</Link></Typography>
-
-                <Placeholder/>
             </FullHeightContent>
 
             <Content>
