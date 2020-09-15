@@ -30,7 +30,7 @@ When receiving a link from a game host, the user has to acknowledge to join the 
 
 ## Limitations
 
-Technically, a participant can extract the exakt location of the host from link. The group has to rely on trust that nobody does this. The app will not be altered to take into account, since any other realisation would require a server and would increase the complexity by an order of magintude.
+Technically, a participant can extract the exact location of the host from link. The group has to rely on trust that nobody does this. The app will not be altered to take that issue into account, since any other realisation would require a server and would increase the complexity by an order of magintude.
 
 Since the `expiredAt` game is also sent in the join-link, it can be altered and games older than 24-hours can be accessed. The 24-hour-limit may not be seen as a security feature but rather as a convenience-feature.
 
