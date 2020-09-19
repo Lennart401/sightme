@@ -24,7 +24,8 @@ const reducers = {
             assist: {
                 tendency: state[options.TENDENCY],
                 dyndist: state[options.DYNAMIC_DISTANCE],
-                nodist: state[options.NO_DISTANCE]
+                nodist: state[options.NO_DISTANCE],
+                vbar: state[options.USE_VBAR]
             }
         };
 
@@ -44,7 +45,8 @@ const reducers = {
 export const options = {
     TENDENCY: "assist-tendency",
     DYNAMIC_DISTANCE: "assist-dyndist",
-    NO_DISTANCE: "assist-nodist"
+    NO_DISTANCE: "assist-nodist",
+    USE_VBAR: "assist-use-vbar"
 };
 
 // EXPORTS -- setters
@@ -79,7 +81,8 @@ const initialState = {
     // link: 'http://localhost:3000/sightme/join/eyJuYW1lIjoiTGVubmFydCIsImV4cGlyZXNBdCI6IjIwMjAtMDctMDRUMjI6NTM6MjBaIiwibGF0Ijo1My4zMDM3MDU2LCJsbmciOjEwLjU0NDc0MjM5OTk5OTk5OX0',
     [options.TENDENCY]: true,
     [options.DYNAMIC_DISTANCE]: false,
-    [options.NO_DISTANCE]: false
+    [options.NO_DISTANCE]: false,
+    [options.USE_VBAR]: false
 };
 
 store.injectReducer(storeKey, (state = initialState, {type, payload}) =>

@@ -28,10 +28,10 @@ const useDistance = () => {
             : b;
         const frequency = exp.fmax * Math.pow(Math.E, multiplier * distance);
 
-        return {distance, frequency: frequency > 0.05 ? frequency : 0.05};
+        return {distance, frequency: frequency > 0.05 ? frequency : 0.05, fmax: exp.fmax};
     }
 
-    return {distance: -1, frequency: -1};
+    return {distance: -1, frequency: -1, fmax: exp.fmax};
 };
 
 export default useDistance;

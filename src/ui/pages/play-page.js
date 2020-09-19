@@ -18,12 +18,13 @@ import ActiveGameWrapper from "../components/active-game-wrapper";
 import FullHeightWrapper from "../components/full-height-wrapper";
 import FullHeightContent from "../components/full-height-content";
 import ButtonBox from "../components/button-box";
+import VerticalBar from "../components/vertical-bar";
 
 const CONFIRM_LEAVE_DIALOG = "confirm-leave-dialog";
 
 const PlayPage = () => {
     const game = useActiveGame();
-    const {distance, frequency} = useDistance();
+    const {distance, frequency, fmax} = useDistance();
     const confirm = useDialogState(CONFIRM_LEAVE_DIALOG);
     useTitle(`Finde ${game?.name} | SightMe`);
 
@@ -69,7 +70,13 @@ const PlayPage = () => {
                     <Placeholder/>
 
                     <Centering>
-                        <LargeRipple enable={useAnimation} frequency={lastFrequency} handleIteration={handleIteration}/>
+                        {(game?.assist && game?.assist?.vbar) && (
+                            <VerticalBar percentage={(frequency / fmax)}/>
+                        )}
+                        {(game?.assist && !game?.assist?.vbar) && (
+                            <LargeRipple enable={useAnimation} frequency={lastFrequency} handleIteration={handleIteration}/>
+                        )}
+
                         <Placeholder/>
                         <Typography variant="body1">
                             <Distance game={game} distance={lastDistance}/>

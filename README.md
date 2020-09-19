@@ -18,7 +18,8 @@ The host creates a new game and will generate a link based on his nickname and p
         "assist": {
             "tendency": true|false
             "dyndist": true|false,
-            "nodist": true|false
+            "nodist": true|false,
+            "vbar": true|false,
         }
     }
     

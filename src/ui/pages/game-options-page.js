@@ -24,6 +24,7 @@ const GameOptionsPage = () => {
     const enableTendency = useOption(options.TENDENCY);
     const enableDynamicDistance = useOption(options.DYNAMIC_DISTANCE);
     const enableNoDistance = useOption(options.NO_DISTANCE);
+    const enableVBar = useOption(options.USE_VBAR);
 
     const currentData = useCurrentData();
 
@@ -75,6 +76,14 @@ const GameOptionsPage = () => {
                     control={<Switch checked={enableNoDistance} onChange={event => setOption(options.NO_DISTANCE, event.target.checked)}/>}
                 />
                 <Caption>Den Teilnehmern nicht die Distanz zu dir anzeigen.</Caption>
+
+                <Placeholder/>
+
+                <LabelWithControl
+                    label="Vertikalen Balken verwenden"
+                    control={<Switch checked={enableVBar} onChange={event => setOption(options.USE_VBAR, event.target.checked)}/>}
+                />
+                <Caption>Statt des blinkenden Kreises einen vertikale, sich füllenden Balken verwenden.</Caption>
             </FullHeightContent>
 
             <ButtonBox>

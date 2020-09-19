@@ -18,6 +18,7 @@ import moment from "moment";
  * @typedef {Object} GameAssistance
  * @property {boolean} tendency - show tendency to participants
  * @property {boolean} dyndist - use dynamic distance (e.g. calculate blinking factor on the fly) instead of fixed distance
+ * @property {boolean} vbar - use vertically filling bar instead of blinking circle
  */
 
 const storeKey = "active-game";

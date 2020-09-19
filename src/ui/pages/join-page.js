@@ -41,9 +41,11 @@ const JoinPage = ({gameBase64}) => {
     if (!game?.assist?.tendency) infoLines.push("Keine Richtungs-Tendenz verfügbar für dieses Spiel");
     if (game?.assist?.dyndist) {
         if (game?.assist?.nodist) infoLines.push("Spiel mit dynamischer Distanz");
-        else infoLines.push("Spiel mit dynamischer Distanz — du siehst trotzdem die Distanz zum Host")
+        else infoLines.push("Spiel mit dynamischer Distanz — du siehst trotzdem die Distanz zum Host");
     }
-    if (game?.assist?.nodist) infoLines.push("Keine Distanz-Anzeige — du siehst nur den blinkenden Kreis")
+    if (game?.assist?.nodist) infoLines.push("Keine Distanz-Anzeige — du siehst nur den blinkenden Kreis");
+    if (game?.assist?.vbar)
+        infoLines.push("Dir wird ein vertikaler, sich füllender Balken angezeigt anstatt des blinkenden Kreises");
 
     return (
         <FullHeightWrapper>
