@@ -14,7 +14,7 @@ const useDistance = () => {
     const location = useGeolocation();
     const game = useActiveGame();
 
-    const getDynamicMultiplier = () => (Math.log(exp.fmin / exp.fmax)) / (game.initialDistance * 1.3);
+    const getDynamicMultiplier = () => (Math.log(exp.fmin / exp.fmax)) / (game.initialDistance * 1.8);
 
     if (location && game) {
         const distance = getDistance(
