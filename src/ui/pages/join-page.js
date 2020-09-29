@@ -41,9 +41,9 @@ const JoinPage = ({gameBase64}) => {
     if (!game?.assist?.tendency) infoLines.push("Keine Richtungs-Tendenz verfügbar für dieses Spiel");
     if (game?.assist?.dyndist) {
         if (game?.assist?.nodist) infoLines.push("Spiel mit dynamischer Distanz");
-        else infoLines.push("Spiel mit dynamischer Distanz — du siehst trotzdem die Distanz zum Host");
+        else infoLines.push("Spiel mit dynamischer Distanz — Du siehst trotzdem die Distanz zum Host");
     }
-    if (game?.assist?.nodist) infoLines.push("Keine Distanz-Anzeige — du siehst nur den blinkenden Kreis");
+    if (game?.assist?.nodist) infoLines.push("Keine Distanz-Anzeige — Du siehst nicht die absolute Distanz zum Host");
     if (game?.assist?.vbar)
         infoLines.push("Dir wird ein vertikaler, sich füllender Balken angezeigt anstatt des blinkenden Kreises");
 
@@ -65,10 +65,10 @@ const JoinPage = ({gameBase64}) => {
                                 <Typography variant="body1">Das Spiel ist bereit abgelaufen, du kannst ihm nicht mehr beitreten.</Typography>
                             )}
 
-                            {infoLines.length && <Placeholder factor={2}/>}
+                            <Placeholder factor={2}/>
 
                             {infoLines.map(line => (
-                                <Fragment>
+                                <Fragment key={line}>
                                     <Caption>{line}</Caption>
                                     <Placeholder factor={0.5}/>
                                 </Fragment>
